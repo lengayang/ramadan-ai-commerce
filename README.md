@@ -1,21 +1,123 @@
-# Ramadan AI Commerce – Build Before Iftar 🚀
+# 🚀 Ramadan AI Commerce  
+### Build Before Iftar. Launch in 60 Seconds.
 
-AI-powered commerce engine that converts ideas into ready-to-sell products in under 60 seconds.
+AI-powered commerce engine yang mengubah ide bisnis Ramadan menjadi produk siap jual lengkap dengan sistem pembayaran dan dashboard profit hanya dalam satu klik.
 
-## Features
-- AI product generation
-- Automatic pricing & margin calculation
-- Payment gateway integration (Mayar API)
-- Webhook transaction logging
-- Real-time analytics dashboard
+---
 
-## Tech Stack
-- Node.js
-- Express
-- OpenAI API
-- Mayar Headless API
-- Chart.js
-- Nginx + PM2 (Production)
+## 🎯 Problem Statement
 
-## Live Demo
-https://ramadan.masri.cloud
+Setiap Ramadan banyak orang memiliki ide jualan seperti:
+
+- Hampers  
+- Takjil  
+- Baju Lebaran  
+- Produk UMKM  
+- Parcel & Gift Box  
+
+Namun sering terhambat oleh:
+
+- Tidak tahu menentukan harga optimal  
+- Tidak memiliki sistem pembayaran online  
+- Tidak punya pencatatan transaksi  
+- Tidak bisa melihat profit secara real-time  
+- Waktu terbatas menjelang Ramadan  
+
+Akibatnya ide berhenti sebagai wacana.
+
+---
+
+## 💡 The Solution
+
+**Ramadan AI Commerce** mengotomatisasi seluruh proses bisnis:
+
+Idea → Product → Payment → Revenue → Analytics
+
+Dalam ±60 detik pengguna bisa:
+
+- Menghasilkan nama dan deskripsi produk menggunakan AI  
+- Mendapatkan harga dengan margin otomatis  
+- Membuat link pembayaran instan  
+- Membagikan ke WhatsApp  
+- Melihat profit dan pertumbuhan revenue di dashboard  
+
+Bukan sekadar teknologi. Ini percepatan peluang.
+
+---
+
+## 🤖 AI Workflow
+User Input Idea
+↓
+AI Generate Product + Base Price
+↓
+Auto Pricing Engine (+20% margin)
+↓
+Mayar API Create Payment Link
+↓
+WhatsApp Share
+↓
+Webhook Capture Payment
+↓
+Logging + Dashboard Analytics
+
+---
+
+## 🧠 System Architecture
+
+### Frontend
+
+- HTML5  
+- CSS3  
+- Animated loading steps  
+- Success notification sound  
+- WhatsApp share integration  
+
+### Backend
+
+- Node.js  
+- Express  
+- OpenAI API  
+- Mayar Headless API  
+- Secure webhook validation  
+- Revenue & profit logging  
+
+### Infrastructure
+
+- Ubuntu VPS  
+- PM2  
+- Nginx  
+- SSL  
+- GitHub  
+
+---
+
+## 🌐 Live Demo
+
+**App:**  
+https://ramadan.masri.cloud  
+
+**Dashboard:**  
+https://ramadan.masri.cloud/dashboard  
+
+**Video Demo:**  
+https://www.youtube.com/watch?v=LwSm6lZJtN4  
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Interface
+
+![Home UI](./ui-home.png)
+
+---
+
+### 📊 Analytics Dashboard
+
+![Dashboard](./dashboard.png)
+
+---
+
+## 🏆 Built for Vibecoding Competition 2026
+
+Dikembangkan melalui pendekatan **vibecoding** dengan kolaborasi AI dan human system architecture untuk menghasilkan end-to-end commerce automation.
