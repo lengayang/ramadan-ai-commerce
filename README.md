@@ -101,7 +101,7 @@ https://ramadan.masri.cloud/dashboard
 
 ## 🎥 Video Demo
 
-▶️ [Watch on YouTube](https://www.youtube.com/watch?v=LwSm6lZJtN4)
+[![Watch Demo](https://img.youtube.com/vi/LwSm6lZJtN4/maxresdefault.jpg)](https://www.youtube.com/watch?v=LwSm6lZJtN4)
 
 ---
 
