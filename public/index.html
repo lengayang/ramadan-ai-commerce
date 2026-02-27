@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramadan AI Commerce</title>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:radial-gradient(circle at top left,#0f172a,#064e3b 70%);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+
+#particles-js{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  top:0;
+  left:0;
+}
+
+.container{
+  text-align:center;
+  background:rgba(255,255,255,0.05);
+  padding:50px;
+  border-radius:25px;
+  backdrop-filter:blur(20px);
+  width:90%;
+  max-width:550px;
+  box-shadow:0 15px 60px rgba(0,0,0,0.5);
+  transition:0.5s;
+}
+
+h1{
+  font-size:28px;
+  margin-bottom:10px;
+}
+
+.tagline{
+  font-size:14px;
+  opacity:0.8;
+  margin-bottom:25px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#22c55e;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+  font-size:15px;
+}
+
+button:hover{
+  background:#16a34a;
+}
+
+.loading{
+  margin-top:20px;
+  font-size:14px;
+  min-height:40px;
+  opacity:0.9;
+  transition:0.3s;
+}
+
+.trust{
+  margin-top:25px;
+  font-size:12px;
+  opacity:0.6;
+}
+
+.fade{
+  animation:fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<div class="container fade">
+  <h1>Build Before Iftar 🚀</h1>
+  <div class="tagline">
+    Launch Your Ramadan Business in 60 Seconds
+    <br>Powered by AI Pricing & Payment Automation
+  </div>
+
+  <input id="idea" placeholder="Contoh: Jualan hampers premium Ramadan">
+  <button onclick="generate()">Generate & Launch</button>
+
+  <div class="loading" id="loading"></div>
+
+  <div class="trust">
+    ⚡ AI Powered &nbsp; | &nbsp; 💳 Auto Payment Ready &nbsp; | &nbsp; 📈 Live Analytics
+  </div>
+</div>
+
+<audio id="successSound" preload="auto">
+  <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// ================= PARTICLE BACKGROUND =================
+tsParticles.load("particles-js", {
+  background: { color: { value: "transparent" } },
+  particles: {
+    number: { value: 35 },
+    size: { value: 2 },
+    move: { speed: 0.4 },
+    opacity: { value: 0.25 }
+  }
+});
+
+// ================= GENERATE FUNCTION =================
+async function generate(){
+
+  const idea = document.getElementById("idea").value.trim();
+  const loading = document.getElementById("loading");
+
+  if(!idea){
+    loading.innerText = "Masukkan ide produk dulu.";
+    return;
+  }
+
+  const steps = [
+    "🤖 AI sedang merancang produk...",
+    "💡 Menentukan harga optimal...",
+    "📊 Menghitung margin keuntungan...",
+    "💳 Menyiapkan sistem pembayaran...",
+    "🚀 Meluncurkan produk..."
+  ];
+
+  let i = 0;
+  loading.innerText = steps[i];
+
+  const interval = setInterval(() => {
+    i++;
+    if(i < steps.length){
+      loading.innerText = steps[i];
+    }
+  }, 800);
+
+  try {
+
+    const res = await fetch("/api/create-invoice", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({idea})
+    });
+
+    const data = await res.json();
+
+    clearInterval(interval);
+
+    if(!res.ok || !data.checkoutUrl){
+      loading.innerText = "❌ Gagal membuat invoice.";
+      console.log(data);
+      return;
+    }
+
+    // Play sound safely
+    const sound = document.getElementById("successSound");
+    sound.play().catch(() => {});
+
+    document.querySelector(".container").innerHTML = `
+      <h2>${data.product.name}</h2>
+      <p>${data.product.description}</p>
+
+      <div style="margin:20px 0; opacity:0.9">
+        <small>Harga Dasar</small><br>
+        <strong>Rp ${data.product.basePrice.toLocaleString()}</strong><br><br>
+
+        <small>Margin</small><br>
+        <strong>Rp ${data.product.margin.toLocaleString()}</strong><br><br>
+
+        <small>Harga Jual</small><br>
+        <h2>Rp ${data.product.finalPrice.toLocaleString()}</h2>
+      </div>
+
+      <button onclick="window.location.href='${data.checkoutUrl}'">
+        Checkout 🚀
+      </button>
+
+      <button style="background:#2563eb;margin-top:10px"
+        onclick="window.location.href='${data.waLink}'">
+        Share ke WhatsApp 📲
+      </button>
+
+      <button style="background:#64748b;margin-top:10px"
+        onclick="location.reload()">
+        Buat Produk Baru
+      </button>
+    `;
+
+  } catch(err){
+    clearInterval(interval);
+    loading.innerText = "❌ Terjadi error sistem.";
+    console.error(err);
+  }
+}
+</script>
+
+</body>
+</html>
