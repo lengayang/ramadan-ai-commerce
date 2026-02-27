@@ -108,13 +108,12 @@ https://www.youtube.com/watch?v=LwSm6lZJtN4
 
 ### 🏠 Home Interface
 
-![Home UI](./ui-home.png)
+![Home UI](screenshots/ui-home.png)
 
----
 
 ### 📊 Analytics Dashboard
 
-![Dashboard](./dashboard.png)
+![Home UI](screenshots/ui-home.png)
 
 ---
 
